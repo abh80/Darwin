@@ -1,0 +1,8 @@
+{
+    "PORT": "3500",
+    "NAME": "Darwin",
+    "password": "password",
+    "redactCorrectPassword": false,
+    "redactIncorrectPassword": false
+
+}
