@@ -8,7 +8,7 @@ export default class Greetings extends Actions {
       match: new RegExp("hi|hello|wassup", "gi"),
     });
   }
-  public async exec(deviceID: number): Promise<void> {
+  public async exec(deviceID: number, message: string): Promise<void> {
     return this.Darwin.say(deviceID, "Hi!");
   }
 }

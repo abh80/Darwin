@@ -18,10 +18,11 @@ export default class Websocket extends EventEmitter {
     this.wss.on("connection", (ws, req) => {
       ws.on("close", () => {
         Logger.info(
-          "WebSocket connection (" +
+          "WebSocket: Connection (" +
             (ws as CustomWebSocket).device.name +
             ") closed"
         );
+        this.Darwin.removeClient(ws as CustomWebSocket);
       });
       if (!req.headers.authorization) {
         ws.close();

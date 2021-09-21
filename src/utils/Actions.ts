@@ -1,5 +1,5 @@
 import Darwin from "./../Darwin";
-import { IActions } from './../Inteface';
+import { IActions } from "./../Inteface";
 
 export default class Actions implements IActions {
   Darwin: Darwin;
@@ -11,7 +11,7 @@ export default class Actions implements IActions {
     this.Darwin = Darwin;
     this.opts = opts;
   }
-  exec(deviceID: number): void {
+  exec(deviceID: number, message: string): void {
     throw new Error("Method not implemented.");
   }
 }

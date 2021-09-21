@@ -38,7 +38,7 @@ export default class Darwin implements IDarwinClientInfo {
   }
 
   private init(): void {
-    const ws = new Websocket(this.wss, this);
+    new Websocket(this.wss, this);
     this.setupActions();
   }
   private setupActions(): void {
@@ -53,8 +53,7 @@ export default class Darwin implements IDarwinClientInfo {
           category,
           action
         )).default as Actions;
-        // @ts-ignore
-        file = new (file as Actions)(this);
+        file = new (file as any)(this);
         this.actions.push(file);
       });
     }

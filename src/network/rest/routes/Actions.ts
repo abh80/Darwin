@@ -6,7 +6,7 @@ export default function ActionRouter(Darwin: Darwin): Router {
     const message = req.body.message;
     Darwin.actions
       .find((x) => x.opts.match?.test(message))
-      ?.exec(parseInt(req.headers["device-id"]?.toString() || ""));
+      ?.exec(parseInt(req.headers["device-id"]?.toString() || ""), message);
     res.send("Action Created!");
   });
   return router;

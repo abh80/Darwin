@@ -22,5 +22,5 @@ export interface CustomWebSocket extends WebSocket {
   device: IDeviceInfo;
 }
 export interface IActions {
-  exec(deviceID: number): void;
+  exec(deviceID: number, message: string): void;
 }
