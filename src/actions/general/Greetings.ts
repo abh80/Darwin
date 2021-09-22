@@ -1,5 +1,6 @@
-import Actions from "./../../utils/Actions";
+import Actions from "../../structures/Actions";
 import Darwin from "./../../Darwin";
+import Message from "./../../structures/Message";
 
 export default class Greetings extends Actions {
   public constructor(Darwin: Darwin) {
@@ -9,6 +10,9 @@ export default class Greetings extends Actions {
     });
   }
   public async exec(deviceID: number, message: string): Promise<void> {
-    return this.Darwin.say(deviceID, "Hi!");
+    return new Message(this.Darwin, deviceID)
+      .say("Hello")
+      .setContent("Hello!")
+      .dispatch();
   }
 }

@@ -1,5 +1,5 @@
-import Darwin from "./../Darwin";
-import { IActions } from "./../Inteface";
+import Darwin from "../Darwin";
+import { IActions } from "../Inteface";
 
 export default class Actions implements IActions {
   Darwin: Darwin;

@@ -27,3 +27,9 @@ app.on("error", (err: any) => {
 server.on("error", (err) => {
   Logger.error(err.message);
 });
+process.on("uncaughtException", (err) => {
+  Logger.error((err as any).message);
+});
+process.on("unhandledRejection", (err) => {
+  Logger.error((err as any).message);
+});

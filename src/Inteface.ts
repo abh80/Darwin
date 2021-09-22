@@ -1,5 +1,5 @@
 import WebSocket from "ws";
-import Actions from "./utils/Actions";
+import Actions from "./structures/Actions";
 export interface IDeviceInfo {
   name: string;
   id: number;
@@ -14,9 +14,9 @@ export interface IDarwinClientInfo {
   actions: Actions[];
 }
 export interface IDarwinClientOptions {
-  password: string;
-  redactCorrectPassword: boolean;
-  redactIncorrectPassword: boolean;
+  readonly password: string;
+  readonly redactCorrectPassword: boolean;
+  readonly redactIncorrectPassword: boolean;
 }
 export interface CustomWebSocket extends WebSocket {
   device: IDeviceInfo;

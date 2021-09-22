@@ -11,7 +11,7 @@ import Rest from "./network/rest/Rest";
 import Constants from "./Constants";
 import fs from "fs";
 import path from "path";
-import Actions from "./utils/Actions";
+import Actions from "./structures/Actions";
 
 export default class Darwin implements IDarwinClientInfo {
   name: string;
@@ -20,6 +20,7 @@ export default class Darwin implements IDarwinClientInfo {
   clients: CustomWebSocket[];
   options: IDarwinClientOptions;
   actions: Actions[];
+  constants: typeof Constants;
   public constructor(
     name: string,
     expressServer: express.Express,
@@ -32,9 +33,10 @@ export default class Darwin implements IDarwinClientInfo {
     this.clients = new Array<CustomWebSocket>();
     this.options = options;
     this.actions = new Array<Actions>();
+    this.constants = Constants;
     new Rest(expressServer, this);
-    Logger.success(`${this.name} is ready`);
     this.init();
+    Logger.success(`${this.name} is ready`);
   }
 
   private init(): void {
@@ -70,12 +72,9 @@ export default class Darwin implements IDarwinClientInfo {
       (c: CustomWebSocket) => c.device.id !== client.device.id
     );
   }
-  public say(deviceID: number, message: string): void {
-    this.sendMessage(deviceID, Constants.codes.DISPATCH_MESSAGE, {
-      content: message,
-    });
-  }
   public sendMessage(to: number, code: number, body: Object): void {
+    if (!this.checkIfClientIsConnected(to))
+      return Logger.error(`Client ${to} not found`);
     this.clients
       .find((c: CustomWebSocket) => c.device.id == to)
       ?.send(JSON.stringify({ code, body }));
