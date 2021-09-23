@@ -72,11 +72,11 @@ export default class Darwin implements IDarwinClientInfo {
       (c: CustomWebSocket) => c.device.id !== client.device.id
     );
   }
-  public sendMessage(to: number, code: string, body: Object): void {
+  public sendMessage(to: number, intent: string, body: Object): void {
     if (!this.checkIfClientIsConnected(to))
       return Logger.error(`Client ${to} not found`);
     this.clients
       .find((c: CustomWebSocket) => c.device.id == to)
-      ?.send(JSON.stringify({ code, body }));
+      ?.send(JSON.stringify({ intent, body }));
   }
 }
