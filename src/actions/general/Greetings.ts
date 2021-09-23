@@ -6,7 +6,7 @@ export default class Greetings extends Actions {
   public constructor(Darwin: Darwin) {
     super(Darwin, {
       name: "Greetings",
-      match: new RegExp("hi|hello|wassup", "gi"),
+      match: new RegExp("hi|hello|wassup", "i"),
     });
   }
   public async exec(deviceID: number, message: string): Promise<void> {

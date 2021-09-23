@@ -33,6 +33,75 @@ const ws = new wss("ws://localhost:3500/gateway", {
     authorization: "password",
   },
 });
+let deviceID = null;
+ws.onopen = () => console.log("open");
+
+ws.onmessage = (e) => {
+  const data = JSON.parse(e.data);
+  console.log(data);
+  switch (data.code) {
+    case 12: // Code 12 is authorization code
+      deviceID = data.body.id;
+      console.log("ID updated!");
+    case 101:
+      console.log("Darwin says : " + data.body.say);
+  }
+};
+```
+
+### Sending a message
+
+To send a message you have make a **POST** request to http://localhost:3500/api/actions/create.
+
+The following headers is required -
+
+- **authorization** : The password defined in config / environment.
+
+- **device-id** : The device id of the device (recivied via websocket).
+
+- **Content-Type** : This header must be set to `application/json`
+
+With the following body -
+
+**message** : The message to be sent.
+
+Here is an example code
+
+```js
+const wss = require("ws");
+const fetch = require("node-fetch");
+const ws = new wss("ws://localhost:3500/gateway", {
+  headers: {
+    name: "Desktop-Main",
+    platform: "windows",
+    authorization: "password",
+  },
+});
+let deviceID = null;
+ws.onopen = () => console.log("open");
+
+ws.onmessage = (e) => {
+  const data = JSON.parse(e.data);
+  console.log(data);
+  switch (data.code) {
+    case 12:
+      deviceID = data.body.id;
+      console.log("ID updated!");
+      fetch("http://localhost:3500/api/actions/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "device-id": deviceID,
+          authorization: "password",
+        },
+        body: JSON.stringify({ message: "hi" }),
+      });
+      break;
+    case 101:
+      console.log("Darwin says : " + data.body.say);
+      break;
+  }
+};
 ```
 
 ## Installation
