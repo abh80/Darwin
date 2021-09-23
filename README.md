@@ -8,12 +8,20 @@ Darwin utilizes the **express** (server) and **ws** (websocket) to handle multip
 
 > Note : Darwin is solely a personal assistant i.e. dont try to host it for commercial usage as its not safe.
 
-## Code Samples
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Code-Samples](#code-samples)
+  - [Connecting-A-Device](#connecting-a-device)
+  - [Sending-A-Message](#sending-a-message)
+
+## Code-Samples
 
 > These samples are written assuming there are no changes in `src/config.json` and project is hosted locally.
 > If you have made changes to config please make suitable changes.
 
-### Connecting a device
+### Connecting-a-device
 
 To connect a device make a **websocket** connection to the server.
 With following headers -
@@ -49,7 +57,7 @@ ws.onmessage = (e) => {
 };
 ```
 
-### Sending a message
+### Sending-a-message
 
 To send a message you have make a **POST** request to http://localhost:3500/api/actions/create.
 
@@ -97,7 +105,7 @@ ws.onmessage = (e) => {
         body: JSON.stringify({ message: "hi" }),
       });
       break;
-    case "message.regular:
+    case "message.regular":
       console.log("Darwin says : " + data.body.say);
       break;
   }
