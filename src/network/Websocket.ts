@@ -17,6 +17,7 @@ export default class Websocket extends EventEmitter {
   private init() {
     this.wss.on("connection", (ws, req) => {
       ws.on("close", () => {
+        if (!(ws as CustomWebSocket).device) return;
         Logger.info(
           "WebSocket: Connection (" +
             (ws as CustomWebSocket).device.name +
