@@ -1,6 +1,6 @@
 export default {
   codes: {
-    DISPATCH_MESSAGE: 101,
-    AUTHORIZATION_MESSAGE: 12,
+    DISPATCH_MESSAGE: "message.regular",
+    AUTHORIZATION_MESSAGE: "auth",
   },
 };
