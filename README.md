@@ -39,11 +39,11 @@ ws.onopen = () => console.log("open");
 ws.onmessage = (e) => {
   const data = JSON.parse(e.data);
   console.log(data);
-  switch (data.code) {
-    case 12: // Code 12 is authorization code
+  switch (data.intent) {
+    case "auth": // Code 12 is authorization code
       deviceID = data.body.id;
       console.log("ID updated!");
-    case 101:
+    case "message.regular":
       console.log("Darwin says : " + data.body.say);
   }
 };
@@ -83,8 +83,8 @@ ws.onopen = () => console.log("open");
 ws.onmessage = (e) => {
   const data = JSON.parse(e.data);
   console.log(data);
-  switch (data.code) {
-    case 12:
+  switch (data.intent) {
+    case "auth":
       deviceID = data.body.id;
       console.log("ID updated!");
       fetch("http://localhost:3500/api/actions/create", {
@@ -97,7 +97,7 @@ ws.onmessage = (e) => {
         body: JSON.stringify({ message: "hi" }),
       });
       break;
-    case 101:
+    case "message.regular:
       console.log("Darwin says : " + data.body.say);
       break;
   }
