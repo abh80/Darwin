@@ -116,4 +116,14 @@ To install follow the following steps :-
 
 - Start the server by running `npm start`
 
+OR
+
+You can also install using **Docker**.
+
+- Pull the image by running `docker pull @abh80/darwin-assistant`
+
+- Run the container by running `docker run -p 3500:3500 -d @abh80/darwin-assistant`
+
+- To add pasword run `docker run -p 3500:3500 -e password=kek -d @abh80/darwin-assistant`
+
 Thats all you have to do!
