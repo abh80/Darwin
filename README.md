@@ -111,7 +111,8 @@ ws.onmessage = (e) => {
   }
 };
 ```
-
+## Intents
+Intents are information that are sent by the server. In short words it tells the application what action to do.
 ## Installation
 
 To install follow the following steps :-
