@@ -7,9 +7,15 @@ import Logger from "./utils/Logger";
 import { IDarwinClientOptions } from "./Inteface";
 
 const DarwinOptions: IDarwinClientOptions = {
-  password: config.password || process.env["PASSWORD"] || "password",
-  redactCorrectPassword: config.redactCorrectPassword || false,
-  redactIncorrectPassword: config.redactIncorrectPassword || false,
+  password: process.env["password"] || config.password || "password",
+  redactCorrectPassword:
+    (process.env["redact_correct_password"] ? true : false) ||
+    config.redactCorrectPassword ||
+    false,
+  redactIncorrectPassword:
+    (process.env["redact_incorrect_password"] ? true : false) ||
+    config.redactIncorrectPassword ||
+    false,
 };
 Logger.info("Starting server...");
 const app = express();
