@@ -25,7 +25,7 @@ const wss = new WebSocket.Server({ server, path: "/gateway" });
 
 server.listen(process.env["port"] || config.PORT || 3500, () => {
   Logger.success(
-    `Server is listening on port ${process.env["PORT"] || config.PORT || 3500}`
+    `Server is listening on port ${process.env["port"] || config.PORT || 3500}`
   );
   new Darwin(config.NAME, app, wss, DarwinOptions);
 });
