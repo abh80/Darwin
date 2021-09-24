@@ -111,8 +111,18 @@ ws.onmessage = (e) => {
   }
 };
 ```
+
 ## Intents
+
 Intents are information that are sent by the server. In short words it tells the application what action to do.
+
+Here are list of supported intents -
+
+| Intent            | Description            |
+| ----------------- | ---------------------- |
+| `auth`            | Authentication intent  |
+| `message.regular` | Regular message intent |
+
 ## Installation
 
 To install follow the following steps :-
