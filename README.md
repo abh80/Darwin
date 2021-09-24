@@ -15,6 +15,7 @@ Darwin utilizes the **express** (server) and **ws** (websocket) to handle multip
 - [Code-Samples](#code-samples)
   - [Connecting-A-Device](#connecting-a-device)
   - [Sending-A-Message](#sending-a-message)
+- [Intents](#intents)
 
 ## Code-Samples
 
