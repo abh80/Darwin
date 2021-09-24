@@ -1,1 +1,1 @@
-docker build -t @abh80/darwin-assistant .
+docker build -t abh80/darwin-assistant .
