@@ -7,7 +7,7 @@ export default class Lyrics extends Actions {
   public constructor(Darwin: Darwin) {
     super(Darwin, {
       name: "Lyrics",
-      match: new RegExp("tell the lyrics of (.+)?", "i"),
+      match: new RegExp("^tell the lyrics of (.+)?", "i"),
     });
   }
   public async exec(deviceID: number, message: string): Promise<void> {
