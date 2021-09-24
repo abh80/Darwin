@@ -138,7 +138,7 @@ To install follow the following steps :-
 
 OR
 
-You can also install using **Docker**.
+You can also install using **Docker** :-
 
 - Pull the image by running `docker pull @abh80/darwin-assistant`
 
