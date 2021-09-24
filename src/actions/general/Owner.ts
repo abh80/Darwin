@@ -2,10 +2,10 @@ import Actions from "../../structures/Actions";
 import Darwin from "./../../Darwin";
 import Message from "./../../structures/Message";
 
-export default class Greetings extends Actions {
+export default class Owner extends Actions {
   public constructor(Darwin: Darwin) {
     super(Darwin, {
-      name: "Greetings",
+      name: "Owner",
       match: new RegExp("^who (made|created) you", "i"),
     });
   }
