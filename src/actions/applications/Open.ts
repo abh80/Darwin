@@ -25,14 +25,29 @@ export default class Open extends Actions {
         "Could not open that application"
       ).dispatch();
     const sendMessage = new Message(this.Darwin, deviceID);
-    switch (target.toLowerCase()) {
-      case "chrome":
-        break;
-      default:
+
+    const apps = {
+      chrome: () => {
+        sendMessage
+          .setContent(`Launching Chrome`)
+          .say("Launching Chrome")
+          .dispatch();
+        this.Darwin.sendMessage(
+          deviceID,
+          this.Darwin.constants.codes.DISPATCH_APP_LAUNCH,
+          {
+            app: "chrome",
+          }
+        );
+      },
+      default: () => {
         sendMessage
           .setContent(`${target} is not a yet supported!`)
-          .say("Could not open that application.");
-        break;
-    }
+          .say("Could not open that application.")
+          .dispatch();
+      },
+    };
+    //@ts-ignore
+    apps[target.toLowerCase()] ? apps[target.toLowerCase()]() : apps.default();
   }
 }
