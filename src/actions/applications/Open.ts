@@ -40,6 +40,32 @@ export default class Open extends Actions {
           }
         );
       },
+      edge: () => {
+        sendMessage
+          .setContent(`Launching Edge`)
+          .say("Launching Edge")
+          .dispatch();
+        this.Darwin.sendMessage(
+          deviceID,
+          this.Darwin.constants.codes.DISPATCH_APP_LAUNCH,
+          {
+            app: "edge",
+          }
+        );
+      },
+      fortnite: () => {
+        sendMessage
+          .setContent(`Launching Fortnite`)
+          .say("Launching Fortnite")
+          .dispatch();
+        this.Darwin.sendMessage(
+          deviceID,
+          this.Darwin.constants.codes.DISPATCH_EPIC_APP_LAUNCH,
+          {
+            url: "com.epicgames.launcher://apps/Fortnite?action=launch&silent=true",
+          }
+        );
+      },
       default: () => {
         sendMessage
           .setContent(`${target} is not a yet supported!`)
